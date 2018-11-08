@@ -1,33 +1,33 @@
 import React, { useState } from 'react';
-import { Map, TileLayer, Marker, Popup, Polygon, Circle } from 'react-leaflet';
+import { Map, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
 import './App.css';
 
-const triangleCoords = [
-  [51.509, -0.08],
-  [51.503, -0.06],
-  [51.51, -0.047]
-];
-
 const App = props => {
-  const [lat, setLat] = useState(51.417316);
-  const [lng, setLng] = useState(-2.210189);
+  const [lat, setLat] = useState(51.41715608736272);
+  const [lng, setLng] = useState(-2.2100704908370976);
   const [zoom, setZoom] = useState(16);
   const position = [lat, lng];
-//OpenStreetMap.Mapnik
+
+  const marker2 = [51.4, -2.21];
+
+  const clickHandler = e => {
+    const { latlng } = e;
+    console.log(latlng);
+  }
+
   return (
-    <Map center={position} zoom={zoom}>
+    <Map center={position} zoom={zoom} onclick={clickHandler}>
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
       <Marker position={position}>
-      <Popup>
-      This is a popup. <br /> Easily customizable.
-      </Popup>
+        <Popup>
+          This is a popup. <br /> Easily customizable.
+        </Popup>
       </Marker>
+      <Marker position={marker2} />
 
-      <Polygon positions={triangleCoords} />
-
-    <Circle center={[51.508, -0.10]} radius={500} fillColor="red" color="red" />
+      <Circle center={position} radius={500} fillColor="red" color="red" />
     </Map>
   );
 };
