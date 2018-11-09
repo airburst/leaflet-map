@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 import { Map, Polyline, TileLayer } from 'react-leaflet';
 import L from 'leaflet';
+import DraggablePolyline from 'react-leaflet-draggable-polyline';
+import './Map.css';
 
 /**
  * This example allows for a polyline, set with Google Directions,
@@ -12,7 +13,6 @@ import L from 'leaflet';
  * https://www.npmjs.com/package/react-leaflet-search
  */
 
-import DraggablePolyline from 'react-leaflet-draggable-polyline';
 
 const gmaps = window.google.maps;
 
@@ -107,14 +107,8 @@ class App extends Component {
 		const flattenPositions = flatten(positions);
 		const bounds = L.latLngBounds(flattenPositions);
 
-		const styles = {
-			map: {
-				height: '300px'
-			}
-		};
-
 		return (
-			<Map bounds={bounds} style={styles.map} ref={m => this.map = m}>
+			<Map bounds={bounds} ref={m => this.map = m}>
 				<TileLayer
 					url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
 					attribution='&copy; Google 2017 | &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -135,4 +129,4 @@ class App extends Component {
 	}
 };
 
-render(<App />, document.getElementById('app'));
+export default App;

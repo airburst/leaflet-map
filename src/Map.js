@@ -9,6 +9,7 @@ const LeafletMap = props => {
   const position = [lat, lng];
 
   const marker2 = [51.4, -2.21];
+  const marker3 = [51.3, -2.11];
 
   const clickHandler = e => {
     const { latlng } = e;
@@ -31,6 +32,9 @@ const LeafletMap = props => {
     </Map>
   );
 };
+
+// Set map bounds with an array of > 1 position like:
+// <Map center={position} bounds={[position, marker2, marker3]}>
 
 /**
  * Some other map providers below. Change the TileLayer attribution and url:
