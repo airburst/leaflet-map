@@ -7,7 +7,7 @@ var myIcon = L.icon({
   iconUrl: '../assets/marker-person.png',
   iconSize: [64, 93],
   iconAnchor: [22, 94],
-  popupAnchor: [-3, -76],
+  popupAnchor: [-3, -76]
 });
 
 const LeafletMap = props => {
@@ -22,13 +22,14 @@ const LeafletMap = props => {
   const clickHandler = e => {
     const { latlng } = e;
     console.log(latlng);
-  }
+  };
 
   return (
     <Map center={position} zoom={zoom} onclick={clickHandler}>
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
       <Marker position={position} icon={myIcon}>
         <Popup>Mark</Popup>
       </Marker>
