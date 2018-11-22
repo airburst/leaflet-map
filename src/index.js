@@ -1,15 +1,22 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-// import LeafletMap from './components/Map';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 
 // Lazy load the map
-const LeafletMap = React.lazy(() => import('./components/MapWithGeoLocation'));
+// const LeafletMap = React.lazy(() => import('./components/Map'));
+// const LeafletGeoMap = React.lazy(() =>
+//   import('./components/MapWithGeoLocation')
+// );
+const LeafletBoundedMap = React.lazy(() =>
+  import('./components/MapWithBounds')
+);
 
 ReactDOM.render(
   <Suspense fallback={<div>Loading...</div>}>
-    <LeafletMap />
+    {/* <LeafletMap /> */}
+    {/* <LeafletGeoMap /> */}
+    <LeafletBoundedMap />
   </Suspense>,
   document.getElementById('root')
 );

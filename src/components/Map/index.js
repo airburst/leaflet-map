@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
-import { Map, TileLayer, Marker, Popup, Circle, Polyline } from 'react-leaflet';
+import { Map, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
 import L from 'leaflet';
-import './Map.css';
+import styled from 'styled-components';
+import { MAP_URL, MAP_ATTRIBUTION } from '../../constants';
+
+const StyledMap = styled(Map)`
+  width: 100%;
+  height: 100vh;
+`;
 
 var myIcon = L.icon({
-  iconUrl: '../assets/marker-person.png',
+  iconUrl: './assets/marker-person.png',
   iconSize: [64, 93],
   iconAnchor: [22, 94],
   popupAnchor: [-3, -76]
@@ -25,11 +31,8 @@ const LeafletMap = props => {
   };
 
   return (
-    <Map center={position} zoom={zoom} onclick={clickHandler}>
-      <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+    <StyledMap center={position} zoom={zoom} onclick={clickHandler}>
+      <TileLayer attribution={MAP_ATTRIBUTION} url={MAP_URL} />
       <Marker position={position} icon={myIcon}>
         <Popup>Mark</Popup>
       </Marker>
@@ -38,7 +41,7 @@ const LeafletMap = props => {
 
       {/* <Marker position={marker2} /> */}
       {/* <Polyline positions={[position, marker2, marker3]} color="red" /> */}
-    </Map>
+    </StyledMap>
   );
 };
 

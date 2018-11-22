@@ -1,29 +1,28 @@
 import React from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import styled from 'styled-components';
 import { GeoPosition } from 'react-fns';
-import './Map.css';
+import { MAP_URL, MAP_ATTRIBUTION } from '../../constants';
+
+const StyledMap = styled(Map)`
+  width: 100%;
+  height: 100vh;
+`;
 
 const getCoords = ({ latitude, longitude }) => [latitude, longitude];
 
 const LeafletMap = props => {
-  // const [lat, setLat] = useState(51.41715608736272);
-  // const [lng, setLng] = useState(-2.2100704908370976);
-  // const [zoom, setZoom] = useState(16);
-  // const position = [lat, lng];
-
   return (
+    // TODO: Handle error
     <GeoPosition
       render={({ isLoading, coords, error }) =>
         !isLoading && coords ? (
-          <Map center={getCoords(coords)} zoom={16}>
-            <TileLayer
-              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
+          <StyledMap center={getCoords(coords)} zoom={16}>
+            <TileLayer attribution={MAP_ATTRIBUTION} url={MAP_URL} />
             <Marker position={getCoords(coords)}>
               <Popup>Mark</Popup>
             </Marker>
-          </Map>
+          </StyledMap>
         ) : (
           <div>Loading</div>
         )
