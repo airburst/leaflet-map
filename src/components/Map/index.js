@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Map, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
+import { Map, TileLayer, Marker, Popup, Circle, Polyline } from 'react-leaflet';
 import L from 'leaflet';
 import styled from 'styled-components';
 import { MAP_URL, MAP_ATTRIBUTION } from '../../constants';
@@ -39,35 +39,10 @@ const LeafletMap = props => {
 
       <Circle center={position} radius={500} fillColor="red" color="red" />
 
-      {/* <Marker position={marker2} /> */}
-      {/* <Polyline positions={[position, marker2, marker3]} color="red" /> */}
+      <Marker position={marker2} />
+      <Polyline positions={[position, marker2, marker3]} color="red" />
     </StyledMap>
   );
 };
-
-// Set map bounds with an array of > 1 position like:
-// <Map center={position} bounds={[position, marker2, marker3]}>
-
-/**
- * Some other map providers below. Change the TileLayer attribution and url:
-
-  Standard:
-  <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
-
-  Watercolour (max zoom = 16):
-  <TileLayer
-        attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        url='https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg' />
-
-  Thunderforest: https://manage.thunderforest.com
-
-    Landscape: https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey={REACT_APP_API_KEY}
-    Outdoors:  https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey={REACT_APP_API_KEY}
-    Cycle Map: https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey={REACT_APP_API_KEY}
-
-    Thunderforest attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
- */
 
 export default LeafletMap;
